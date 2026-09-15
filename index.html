@@ -989,6 +989,9 @@ a{color:rgb(7,37,80)}a:hover{color:rgb(98,118,155)}
                 <sc-for list="{{ b.items }}" as="cp" hint-placeholder-count="3">
                   <div style="border-radius:20.1619px;background:rgb(255,255,255);box-shadow:inset 0 0 0 1.26px rgb(231,236,245),0px 4px 4px 0px rgba(11,48,100,0.05);padding:20px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
                     <div style="display:flex;flex-direction:row;align-items:center;gap:18px">
+                      <div style="width:40px;height:40px;border-radius:50%;background:{{ cp.rankBg }};display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                        <span style="font-weight:800;font-size:18px;line-height:1;color:{{ cp.rankInk }}">{{ cp.rank }}</span>
+                      </div>
                       <img src="{{ cp.src }}" alt="" width="1312" height="738" style="width:176px;height:99px;border-radius:14px;object-fit:cover;flex-shrink:0;background:rgb(237,242,252);box-shadow:inset 0 0 0 1px rgba(7,37,80,.08)">
                       <div style="flex:1;display:flex;flex-direction:column;gap:6px;min-width:0">
                         <span style="font-weight:700;font-size:26px;line-height:1.22;text-wrap:pretty">{{ cp.name }}</span>
@@ -1512,7 +1515,12 @@ a{color:rgb(7,37,80)}a:hover{color:rgb(98,118,155)}
         <div style="position:absolute;left:32px;top:290px;width:656px;max-height:950px;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;gap:18px;padding-bottom:8px;box-sizing:border-box">
           <sc-for list="{{ campList }}" as="cl" hint-placeholder-count="3">
             <div onClick="{{ cl.onPick }}" style="flex-shrink:0;border-radius:24px;background:rgb(255,255,255);box-shadow:inset 0 0 0 1.26px rgb(231,236,245),0px 4px 4px 0px rgba(11,48,100,0.05);padding:20px;box-sizing:border-box;display:flex;flex-direction:row;align-items:center;gap:22px;cursor:pointer;transition:transform .16s ease,background .16s ease" style-active="transform:scale(.99);background:rgb(248,250,255)">
-              <img src="{{ cl.src }}" alt="" width="1312" height="738" style="width:268px;height:151px;border-radius:16px;object-fit:cover;flex-shrink:0;background:rgb(237,242,252);box-shadow:inset 0 0 0 1px rgba(7,37,80,.08)">
+              <sc-if value="{{ !cl.isTip }}" hint-placeholder-val="{{ true }}">
+                <img src="{{ cl.src }}" alt="" width="1312" height="738" style="width:268px;height:151px;border-radius:16px;object-fit:cover;flex-shrink:0;background:rgb(237,242,252);box-shadow:inset 0 0 0 1px rgba(7,37,80,.08)">
+              </sc-if>
+              <sc-if value="{{ cl.isTip }}">
+                <div style="width:268px;height:151px;border-radius:16px;flex-shrink:0;background:rgb(226,238,254);display:flex;align-items:center;justify-content:center">{{ cl.icon }}</div>
+              </sc-if>
               <div style="flex:1;display:flex;flex-direction:column;gap:8px;min-width:0">
                 <span style="font-weight:700;font-size:30px;line-height:1.2;text-wrap:pretty">{{ cl.name }}</span>
                 <span style="font-weight:500;font-size:22px;line-height:1.3;color:rgb(98,118,155)">{{ cl.org }}</span>
@@ -1535,8 +1543,13 @@ a{color:rgb(7,37,80)}a:hover{color:rgb(98,118,155)}
             </svg>
           </div>
         </sc-if>
-        <span style="position:absolute;left:32px;top:126px;width:656px;font-weight:700;font-size:22px;line-height:1.2;letter-spacing:.18em;text-align:center;color:rgb(98,118,155)">{{ t.campEyebrow }}</span>
-        <img src="{{ campSrc }}" alt="{{ campAlt }}" width="1312" height="738" style="position:absolute;left:32px;top:176px;width:656px;height:369px;border-radius:24px;object-fit:cover;background:rgb(237,242,252)">
+        <span style="position:absolute;left:32px;top:126px;width:656px;font-weight:700;font-size:22px;line-height:1.2;letter-spacing:.18em;text-align:center;color:rgb(98,118,155)">{{ campEyebrowText }}</span>
+        <sc-if value="{{ !campIsTip }}" hint-placeholder-val="{{ true }}">
+          <img src="{{ campSrc }}" alt="{{ campAlt }}" width="1312" height="738" style="position:absolute;left:32px;top:176px;width:656px;height:369px;border-radius:24px;object-fit:cover;background:rgb(237,242,252)">
+        </sc-if>
+        <sc-if value="{{ campIsTip }}">
+          <div style="position:absolute;left:32px;top:176px;width:656px;height:369px;border-radius:24px;background:rgb(226,238,254);display:flex;align-items:center;justify-content:center">{{ campTipIcon }}</div>
+        </sc-if>
         <div style="position:absolute;left:32px;top:582px;width:656px;display:flex;flex-direction:column;align-items:center;gap:10px">
           <span style="font-weight:700;font-size:44px;line-height:1.2;text-align:center;text-wrap:pretty">{{ campName }}</span>
           <span style="font-weight:500;font-size:24px;line-height:1.3;text-align:center;color:rgb(98,118,155)">{{ campOrg }}</span>
@@ -1973,15 +1986,20 @@ const COPY = {
         desc: "Financia proyectos de investigaci\u00f3n oncol\u00f3gica en hospitales p\u00fablicos.",
         legal: "Donaci\u00f3n gestionada por Fundaci\u00f3n Z (G\u201100000002). Desgrava en el IRPF. El comercio no percibe ninguna comisi\u00f3n." },
       alimentos: { name: "Recogida de alimentos", org: "Fundaci\u00f3n W",
+        claim: "", desc: "", legal: "" },
+      reforestacion: { name: "Reforestaci\u00f3n urbana", org: "Fundaci\u00f3n V",
+        claim: "", desc: "", legal: "" },
+      libros: { name: "Libros para todos", org: "Fundaci\u00f3n T",
         claim: "", desc: "", legal: "" }
     },
     campTitle: "Campa\u00f1as", campSub: "Campa\u00f1as solidarias que PAY pone a tu disposici\u00f3n",
     campNewsNew: "{n} campa\u00f1a nueva disponible", campNewsNewP: "{n} campa\u00f1as nuevas disponibles",
     campNewsUpd: "{n} campa\u00f1a actualizada por PAY", campNewsUpdP: "{n} campa\u00f1as actualizadas por PAY",
     campNewsJoin: " \u00b7 ", campNewsTail: ". Una campa\u00f1a nueva no se muestra en el cobro hasta que t\u00fa la actives.",
-    campListTitle: "Disponibles para tu TPV",
+    campShowLabel: "Mostrar campa\u00f1as en el cobro", campShowSub: "El cliente las ver\u00e1 entre el importe y el pago",
+    campShowOffNote: "Con esto apagado no se muestra ninguna campa\u00f1a durante el cobro, aunque est\u00e9n activas.",
+    campListTitle: "Disponibles",
     campLead: "T\u00fa decides cu\u00e1les se muestran durante el cobro y en qu\u00e9 orden. El contenido lo define PAY.",
-    campStActive: "Activa \u00b7 se muestra la {n}.\u00aa", campStActiveOne: "Activa \u00b7 se muestra en el cobro",
     campStAvail: "Disponible \u00b7 no se muestra en el cobro",
     campChipNew: "Nueva", campChipUpd: "Actualizada",
     campOnWord: "Activa", campOffWord: "Disponible",
@@ -1990,7 +2008,7 @@ const COPY = {
     campOffToast: "{n}: ya no se muestra durante el cobro",
     methodOnToast: "{n}: activado en el cobro",
     methodOffToast: "{n}: desactivado en el cobro",
-    campEndedTitle: "Finalizadas", campEndedBadge: "Finalizada",
+    campEndedTitle: "No disponibles", campEndedBadge: "Finalizada",
     campEndedSub: "Vigencia terminada el {d} \u00b7 PAY la retir\u00f3 del cobro autom\u00e1ticamente",
     campNote: "PAY crea y distribuye las campa\u00f1as. Desde el TPV no se puede editar su nombre, imagen, textos, importes ni vigencia: solo activarlas, ordenarlas y consultarlas.",
     campInfoSub: "Contenido definido por PAY \u00b7 solo lectura",
@@ -2005,6 +2023,10 @@ const COPY = {
     campPurchase: "Compra {a}",
     campInPayment: "Incluye {a} de donaci\u00f3n",
     campDoneToast: "Cobro con donaci\u00f3n de {a}",
+    tipAskTitle: "\u00bfQuieres dejar propina?", tipAskClaim: "Elige un porcentaje sobre el importe de tu compra.",
+    tipEyebrow: "PROPINA", tipPickSub: "Un extra para el equipo",
+    tipInPayment: "Incluye {a} de propina",
+    tipDoneToast: "Cobro con propina de {a}",
     groups: [
       ["Operaciones", [
         ["history", "Historial de operaciones", "Devolver, anular, reimprimir y buscar"]
@@ -2372,15 +2394,18 @@ const COPY = {
         claim: "Your purchase also does research.",
         desc: "Funds oncology research projects in public hospitals.",
         legal: "Donation managed by Foundation Z. Tax deductible. The merchant receives no commission." },
-      alimentos: { name: "Food drive", org: "Foundation W", claim: "", desc: "", legal: "" }
+      alimentos: { name: "Food drive", org: "Foundation W", claim: "", desc: "", legal: "" },
+      reforestacion: { name: "Urban reforestation", org: "Foundation V", claim: "", desc: "", legal: "" },
+      libros: { name: "Books for everyone", org: "Foundation T", claim: "", desc: "", legal: "" }
     },
     campTitle: "Campaigns", campSub: "Charity campaigns PAY makes available to you",
     campNewsNew: "{n} new campaign available", campNewsNewP: "{n} new campaigns available",
     campNewsUpd: "{n} campaign updated by PAY", campNewsUpdP: "{n} campaigns updated by PAY",
     campNewsJoin: " \u00b7 ", campNewsTail: ". A new campaign is not shown at checkout until you activate it.",
-    campListTitle: "Available for your terminal",
+    campShowLabel: "Show campaigns at checkout", campShowSub: "The customer will see them between the amount and payment",
+    campShowOffNote: "With this off, no campaign is shown at checkout, even if marked active.",
+    campListTitle: "Available",
     campLead: "You decide which ones appear at checkout and in which order. PAY defines the content.",
-    campStActive: "Active \u00b7 shown {n}st", campStActiveOne: "Active \u00b7 shown at checkout",
     campStAvail: "Available \u00b7 not shown at checkout",
     campChipNew: "New", campChipUpd: "Updated",
     campOnWord: "Active", campOffWord: "Available",
@@ -2389,7 +2414,7 @@ const COPY = {
     campOffToast: "{n}: no longer shown at checkout",
     methodOnToast: "{n}: enabled at checkout",
     methodOffToast: "{n}: disabled at checkout",
-    campEndedTitle: "Ended", campEndedBadge: "Ended",
+    campEndedTitle: "Not available", campEndedBadge: "Ended",
     campEndedSub: "Ran out on {d} \u00b7 PAY withdrew it from checkout automatically",
     campNote: "PAY creates and distributes campaigns. The terminal cannot edit their name, image, copy, amounts or validity: only activate, reorder and review them.",
     campInfoSub: "Content defined by PAY \u00b7 read only",
@@ -2404,6 +2429,10 @@ const COPY = {
     campPurchase: "Purchase {a}",
     campInPayment: "Includes {a} donation",
     campDoneToast: "Charged with a {a} donation",
+    tipAskTitle: "Would you like to leave a tip?", tipAskClaim: "Choose a percentage of your purchase amount.",
+    tipEyebrow: "TIP", tipPickSub: "A little extra for the team",
+    tipInPayment: "Includes {a} tip",
+    tipDoneToast: "Charged with a {a} tip",
     groups: [
       ["Transactions", [
         ["history", "Transaction history", "Refund, void, reprint and search"]
@@ -2554,7 +2583,9 @@ const CAMPAIGNS = [
   { id: "aula", img: "assets/campaigns/aula.jpg", amounts: [100, 200, 300], until: "31/12/2026", rev: 2, updated: true },
   { id: "infancia", img: "assets/campaigns/infancia.jpg", amounts: [100, 200, 500], until: "28/02/2027", rev: 1, isNew: true },
   { id: "investigacion", img: "assets/campaigns/investigacion.jpg", amounts: [100, 200, 300], until: "30/06/2027", rev: 3 },
-  { id: "alimentos", img: "", amounts: [100, 200], until: "31/08/2026", rev: 4, ended: true }
+  { id: "alimentos", img: "", amounts: [100, 200], until: "31/08/2026", rev: 4, ended: true },
+  { id: "reforestacion", img: "", amounts: [100, 200], until: "15/03/2026", rev: 1, ended: true },
+  { id: "libros", img: "", amounts: [100, 300], until: "30/11/2025", rev: 2, ended: true }
 ];
 const CAMP_BY = {};
 CAMPAIGNS.forEach((c) => { CAMP_BY[c.id] = c; });
@@ -2583,7 +2614,7 @@ const SCREEN_BY_LABEL = {
 };
 
 const DEFAULT_FLAGS = {
-  vatEnabled: true, askTip: true, tipOnCustomer: true, roundTips: false,
+  vatEnabled: true, askTip: true, tipOnCustomer: false, roundTips: false,
   logoOnTicket: true, printMerchant: true, printCustomer: false, digitalReceipt: true,
   askPin: true, lockOnIdle: true, keySound: true, autoUpdate: true, mobileData: true
 };
@@ -2614,7 +2645,8 @@ class Component extends DCLogic {
     campOrder: ["aula", "infancia", "investigacion"], campOn: ["aula", "investigacion", "alimentos"],
     // "alimentos" sigue en campOn: el comercio la activó en su día y PAY la retiró al caducar.
     // liveCamps() la filtra, así que no llega al cobro sin que nadie la desactive a mano.
-    camp: null, campDonation: 0
+    campShow: false,
+    camp: null, campDonation: 0, tipAdded: 0
   };
   timers = [];
 
@@ -3328,24 +3360,29 @@ class Component extends DCLogic {
       const live = this.liveCamps();
       const active = live.filter((id) => st.campOn.indexOf(id) >= 0);
       const blocks = [];
-      blocks.push({ type: "camps", title: t.campListTitle, lead: t.campLead, items: live.map((id) => {
+      blocks.push({ type: "toggles", items: [
+        { id: "campShowFlag", label: t.campShowLabel, sub: t.campShowSub, on: st.campShow,
+          onToggle: () => this.setState((s2) => ({ campShow: !s2.campShow })) }
+      ] });
+      if (!st.campShow) blocks.push({ type: "note", text: t.campShowOffNote });
+      const campRow = (id) => {
         const c = CAMP_BY[id];
         const on = st.campOn.indexOf(id) >= 0;
         const pos = active.indexOf(id);
         return {
           name: t.camps[id].name, org: t.camps[id].org, img: c.img, on: on,
-          state: on
-            ? (active.length === 1 ? t.campStActiveOne : t.campStActive.replace("{n}", String(pos + 1)))
-            : t.campStAvail,
+          rank: on ? String(pos + 1) : "–",
+          state: on ? t.campOnWord : t.campStAvail,
           chip: c.isNew ? t.campChipNew : (c.updated ? t.campChipUpd : ""),
           chipTone: c.isNew ? "new" : "upd",
           first: live.indexOf(id) === 0, last: live.indexOf(id) === live.length - 1,
           seeLabel: t.campSee,
-          onUp: this.moveCamp(id, -1), onDown: this.moveCamp(id, 1),
+          onUp: this.moveCamp(id, -1, live), onDown: this.moveCamp(id, 1, live),
           onToggle: this.toggleCamp(id, t),
           onOpen: () => this.setState({ detail: "campaign-" + id })
         };
-      }) });
+      };
+      if (live.length) blocks.push({ type: "camps", title: t.campListTitle, lead: t.campLead, items: live.map(campRow) });
       const ended = CAMPAIGNS.filter((c) => c.ended);
       if (ended.length) blocks.push({ type: "list", title: t.campEndedTitle, items: ended.map((c) => ({
         title: t.camps[c.id].name, sub: t.campEndedSub.replace("{d}", c.until),
@@ -3618,13 +3655,18 @@ class Component extends DCLogic {
     this.setState((s) => ({ payOff: s.payOff.indexOf(id) >= 0 ? s.payOff.filter((x) => x !== id) : s.payOff.concat([id]) }));
     this.flash((on ? t.methodOnToast : t.methodOffToast).replace("{n}", label));
   };
-  moveCamp = (id, delta) => () => {
+  // delta se mueve dentro de "scope" (el grupo visible: activas o disponibles), no del orden global,
+  // para que reordenar en un grupo no salte por encima de tarjetas del otro grupo sin moverse en pantalla.
+  moveCamp = (id, delta, scope) => () => {
     this.setState((s) => {
-      const arr = s.campOrder.slice();
-      const i = arr.indexOf(id);
+      const list = scope || s.campOrder;
+      const i = list.indexOf(id);
       const j = i + delta;
-      if (i < 0 || j < 0 || j >= arr.length) return {};
-      arr[i] = arr[j]; arr[j] = id;
+      if (i < 0 || j < 0 || j >= list.length) return {};
+      const otherId = list[j];
+      const arr = s.campOrder.slice();
+      const ai = arr.indexOf(id), aj = arr.indexOf(otherId);
+      arr[ai] = otherId; arr[aj] = id;
       return { campOrder: arr };
     });
   };
@@ -3637,8 +3679,15 @@ class Component extends DCLogic {
   payWithCamp = (donation) => () => {
     const st = this.state;
     this.setState({
-      camp: null, campDonation: donation, paying: true,
+      camp: null, campDonation: donation, tipAdded: 0, paying: true,
       payCents: st.cents + donation, payPart: null, toolsOpen: false, toast: null
+    });
+  };
+  payWithTip = (tip) => () => {
+    const st = this.state;
+    this.setState({
+      camp: null, campDonation: 0, tipAdded: tip, paying: true,
+      payCents: st.cents + tip, payPart: null, toolsOpen: false, toast: null
     });
   };
   // Activas = elegidas por el comercio y todavía vigentes. PAY retira las caducadas.
@@ -3819,10 +3868,13 @@ class Component extends DCLogic {
     })).filter((g) => g.items.length > 0);
 
     // detalle de gestión
-    const campActive = this.activeCamps();
+    const campActive = st.campShow ? this.activeCamps() : [];
+    const tipWanted = !!st.flags.tipOnCustomer;
+    const campOptions = (tipWanted ? ["tip"] : []).concat(campActive);
     const campSelId = st.camp && st.camp.id ? st.camp.id : null;
-    const campC = campSelId ? CAMP_BY[campSelId] : null;
-    const campT = campSelId ? t.camps[campSelId] : null;
+    const campIsTip = campSelId === "tip";
+    const campC = campSelId && !campIsTip ? CAMP_BY[campSelId] : null;
+    const campT = campSelId && !campIsTip ? t.camps[campSelId] : null;
     const TONES = {
       ok: ["rgb(224,246,235)", "rgb(0,105,63)"],
       warn: ["rgb(255,244,214)", "rgb(122,77,0)"],
@@ -3985,6 +4037,7 @@ class Component extends DCLogic {
         out.lead = b.lead || "";
         out.items = b.items.map((c) => ({
           name: c.name, org: c.org, src: c.img, state: c.state, seeLabel: c.seeLabel,
+          rank: c.rank, rankBg: c.on ? "rgb(7,37,80)" : "rgb(243,246,254)", rankInk: c.on ? "rgb(255,255,255)" : "rgb(122,140,175)",
           stateInk: c.on ? "rgb(0,105,63)" : "rgb(98,118,155)",
           dotBg: c.on ? "rgb(0,138,82)" : "rgb(190,201,220)",
           hasChip: !!c.chip, chip: c.chip || "",
@@ -4210,21 +4263,29 @@ class Component extends DCLogic {
       onCampaign: !!st.camp,
       campPick: !!st.camp && st.camp.stage === "pick",
       campAsk: !!st.camp && st.camp.stage === "ask",
-      campCanBack: !!st.camp && st.camp.stage === "ask" && campActive.length > 1,
-      campList: campActive.map((id) => ({
-        name: t.camps[id].name, org: t.camps[id].org, src: CAMP_BY[id].img,
+      campCanBack: !!st.camp && st.camp.stage === "ask" && campOptions.length > 1,
+      campList: campOptions.map((id) => id === "tip" ? {
+        name: t.tipLabel, org: t.tipPickSub, isTip: true, icon: icon("percent", 64),
+        onPick: () => this.setState({ camp: { stage: "ask", id: "tip" } })
+      } : {
+        name: t.camps[id].name, org: t.camps[id].org, src: CAMP_BY[id].img, isTip: false,
         onPick: () => this.setState({ camp: { stage: "ask", id: id } })
-      })),
+      }),
+      campIsTip: campIsTip,
+      campTipIcon: icon("percent", 130),
+      campEyebrowText: campIsTip ? t.tipEyebrow : t.campEyebrow,
       campSrc: campC ? campC.img : "",
       campAlt: campT ? campT.name : "",
-      campName: campT ? campT.name : "",
+      campName: campIsTip ? t.tipAskTitle : (campT ? campT.name : ""),
       campOrg: campT ? campT.org : "",
-      campClaim: campT ? campT.claim : "",
+      campClaim: campIsTip ? t.tipAskClaim : (campT ? campT.claim : ""),
       campDesc: campT ? campT.desc : "",
-      campAmounts: campC ? campC.amounts.map((a) => ({ label: this.fmt(a), onPick: this.payWithCamp(a) })) : [],
+      campAmounts: campIsTip
+        ? st.tipPresets.map((pct) => ({ label: pct + " %", onPick: this.payWithTip(Math.round((st.cents * pct / 100) / 10) * 10) }))
+        : (campC ? campC.amounts.map((a) => ({ label: this.fmt(a), onPick: this.payWithCamp(a) })) : []),
       campPurchaseLine: t.campPurchase.replace("{a}", this.fmt(st.cents)),
       onCampBack: () => this.setState({ camp: { stage: "pick" } }),
-      onCampSkip: this.payWithCamp(0),
+      onCampSkip: campIsTip ? this.payWithTip(0) : this.payWithCamp(0),
       sheetSplit: sheet === "split",
       sheetTip: sheet === "tip",
       sheetCalc: sheet === "calc",
@@ -4326,10 +4387,11 @@ class Component extends DCLogic {
       payKind: st.payMode === "refund" ? "refund" : "charge",
       payMethodsCsv: st.payAltShow ? st.payOrder.filter((id) => st.payContracted.indexOf(id) >= 0 && st.payOff.indexOf(id) < 0).join(",") : "none",
       payMethodsOpen: st.payOpen,
-      payContext: !!st.payPart || st.campDonation > 0,
+      payContext: !!st.payPart || st.campDonation > 0 || st.tipAdded > 0,
       payContextLabel: st.payPart
         ? t.payingPart.replace("{a}", st.payPart.index + 1).replace("{b}", st.payPart.total)
-        : (st.campDonation > 0 ? t.campInPayment.replace("{a}", this.fmt(st.campDonation)) : ""),
+        : (st.campDonation > 0 ? t.campInPayment.replace("{a}", this.fmt(st.campDonation))
+          : (st.tipAdded > 0 ? t.tipInPayment.replace("{a}", this.fmt(st.tipAdded)) : "")),
       language: this.props.language === "en" ? "en" : "es",
       outcome: this.props.outcome === "ko" ? "ko" : "ok",
       chargeInk: st.tab === "charge" ? "rgb(7,37,80)" : "rgb(98,118,155)",
@@ -4360,23 +4422,23 @@ class Component extends DCLogic {
       onToggleTools: () => this.setState((s) => ({ toolsOpen: !s.toolsOpen })),
       onContinue: () => {
         if (st.cents <= 0) { this.flash(t.needAmount); return; }
-        // Sin campañas activas el empleado no ve ni un paso más: importe -> pago.
-        if (campActive.length === 0) {
-          this.setState({ paying: true, payCents: st.cents, payPart: null, campDonation: 0, toolsOpen: false, toast: null });
+        // Sin propina ni campañas activas el empleado no ve ni un paso más: importe -> pago.
+        if (campOptions.length === 0) {
+          this.setState({ paying: true, payCents: st.cents, payPart: null, campDonation: 0, tipAdded: 0, toolsOpen: false, toast: null });
           return;
         }
         this.setState({
-          camp: campActive.length === 1 ? { stage: "ask", id: campActive[0] } : { stage: "pick" },
-          campDonation: 0, toolsOpen: false, toast: null
+          camp: campOptions.length === 1 ? { stage: "ask", id: campOptions[0] } : { stage: "pick" },
+          campDonation: 0, tipAdded: 0, toolsOpen: false, toast: null
         });
       },
       onCancelPayment: () => this.setState({
-        paying: false, payPart: null, camp: null, campDonation: 0,
+        paying: false, payPart: null, camp: null, campDonation: 0, tipAdded: 0,
         flowStage: st.payMode === "refund" ? "amount" : null,
         payMode: "charge"
       }),
-      goCharge: () => this.setState({ tab: "charge", paying: false, camp: null, campDonation: 0, toolsOpen: false, sheet: null, detail: null }),
-      goManage: () => this.setState({ tab: "manage", paying: false, camp: null, campDonation: 0, toolsOpen: false, sheet: null, detail: null }),
+      goCharge: () => this.setState({ tab: "charge", paying: false, camp: null, campDonation: 0, tipAdded: 0, toolsOpen: false, sheet: null, detail: null }),
+      goManage: () => this.setState({ tab: "manage", paying: false, camp: null, campDonation: 0, tipAdded: 0, toolsOpen: false, sheet: null, detail: null }),
       onPaymentDone: () => {
         if (st.payMode === "refund" && rTx) {
           const map = Object.assign({}, st.refunded);
@@ -4399,8 +4461,9 @@ class Component extends DCLogic {
           }
           return;
         }
-        this.setState({ tab: "charge", paying: false, camp: null, campDonation: 0, toolsOpen: false, sheet: null, cents: 0, tipApplied: 0, tipPct: null, toast: null });
+        this.setState({ tab: "charge", paying: false, camp: null, campDonation: 0, tipAdded: 0, toolsOpen: false, sheet: null, cents: 0, tipApplied: 0, tipPct: null, toast: null });
         if (st.campDonation > 0) this.flash(t.campDoneToast.replace("{a}", this.fmt(st.campDonation)));
+        else if (st.tipAdded > 0) this.flash(t.tipDoneToast.replace("{a}", this.fmt(st.tipAdded)));
       }
     };
   }
