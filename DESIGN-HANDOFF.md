@@ -14,7 +14,7 @@ This archive is the source of truth for turning the design into production code.
 - HTML screens detected: 2
 - Stylesheets detected: 0
 - Script/component files detected: 1
-- Supporting assets detected: 44
+- Supporting assets detected: 50
 
 ## Responsive contract
 Validate the implementation across this 2025–2026 viewport matrix:
@@ -87,26 +87,32 @@ For responsive web exports, treat these as a modern breakpoint system for one ad
 - `assets/v2/bizum.png`
 - `assets/v2/chevron-navy.svg`
 - `assets/v2/chevron.svg`
+- `assets/v2/chip-cm36.png`
 - `assets/v2/close-circle.svg`
 - `assets/v2/mbway.png`
 - `assets/v2/nfc-cm36.png`
 - `assets/v2/nfc-navy.svg`
 - `assets/v2/nfc-white.svg`
 - `assets/v2/nfc.svg`
+- `assets/v2/nfc2-cm36.png`
 - `assets/v2/three-dots-navy.svg`
 - `assets/v2/three-dots.svg`
 - `assets/v2/wero.png`
 - `assets/wechat.png`
 - `assets/wero.png`
+- `chip.png`
 - `CM36-NFC.png`
 - `drawing-2026-09-15T09-34-27-669Z.png`
 - `drawing-2026-09-15T20-36-47-577Z.png`
 - `image-1.png`
+- `image-2.png`
 - `image.png`
 - `Lectura-NFC-correcta.mp3`
+- `nfc.png`
 - `screenshots/method-bottom.png`
 - `screenshots/method-cancel.png`
 - `screenshots/method.png`
+- `screenshots/pay-icon-crossfade.png`
 - `screenshots/pay-visible.png`
 - `screenshots/wallet-layout.png`
 - `thumbnail.jpg`
