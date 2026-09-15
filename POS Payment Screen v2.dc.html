@@ -3,6 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* Encaje a viewport: el lienzo de diseño (720x1600) se centra y se escala
+     para caber en el alto/ancho real disponible -- así compensa barras de
+     navegador y de navegación de Android que restan alto en pantalla completa. */
+  html, body { margin: 0; padding: 0; height: 100%; background: #0d0d10; overflow: hidden; }
+  #dc-root { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; overflow: hidden; }
+  #dc-root > div { transform: scale(var(--dc-fit-scale, 1)); transform-origin: center center; flex-shrink: 0; }
+</style>
+<script>
+(function () {
+  function fitCanvas() {
+    var vv = window.visualViewport;
+    var w = vv ? vv.width : window.innerWidth;
+    var h = vv ? vv.height : window.innerHeight;
+    var scale = Math.min(w / 720, h / 1600, 1);
+    document.documentElement.style.setProperty("--dc-fit-scale", scale);
+  }
+  fitCanvas();
+  window.addEventListener("resize", fitCanvas);
+  window.addEventListener("orientationchange", fitCanvas);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", fitCanvas);
+    window.visualViewport.addEventListener("scroll", fitCanvas);
+  }
+})();
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
