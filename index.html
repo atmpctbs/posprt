@@ -824,6 +824,91 @@ a{color:rgb(7,37,80)}a:hover{color:rgb(98,118,155)}
               </div>
             </sc-if>
 
+            <sc-if value="{{ b.isLayoutPick }}">
+              <div style="display:flex;flex-direction:row;gap:14px;align-items:stretch">
+                <sc-for list="{{ b.items }}" as="o" hint-placeholder-count="2">
+                  <div onClick="{{ o.onPick }}" style="flex:1;min-width:0;border-radius:20.1619px;background:rgb(255,255,255);box-shadow:inset 0 0 0 {{ o.ring }} {{ o.border }},0px 4px 4px 0px rgba(11,48,100,0.05);padding:18px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px;cursor:pointer;transition:transform .14s ease" style-active="transform:scale(.98)">
+
+                    <div style="align-self:stretch;height:292px;border-radius:14px;background:rgb(243,246,254);box-shadow:inset 0 0 0 1.26px rgb(231,236,245);padding:16px 14px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:8px;overflow:hidden">
+                      <div style="width:46px;height:46px;border-radius:50%;background:rgb(226,238,254);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                        <div style="width:22px;height:22px;border-radius:50%;box-shadow:inset 0 0 0 3px rgb(199,222,252)"></div>
+                      </div>
+                      <div style="width:100px;height:8px;border-radius:4px;background:rgba(7,37,80,.3);flex-shrink:0"></div>
+                      <div style="width:66px;height:6px;border-radius:3px;background:rgba(7,37,80,.14);flex-shrink:0"></div>
+                      <div style="width:112px;height:18px;border-radius:5px;background:rgb(7,37,80);flex-shrink:0"></div>
+
+                      <div style="flex:1;min-height:8px"></div>
+
+                      <sc-if value="{{ o.isCollapsed }}">
+                        <div style="align-self:stretch;height:34px;border-radius:10px;background:rgb(255,255,255);box-shadow:inset 0 0 0 1.26px rgb(231,236,245);display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:0 11px;box-sizing:border-box;flex-shrink:0">
+                          <div style="display:flex;flex-direction:row;align-items:center;gap:8px">
+                            <div style="width:14px;height:14px;display:grid;grid-template-columns:repeat(3,3px);grid-template-rows:repeat(3,3px);gap:2.5px">
+                              <div style="width:3px;height:3px;border-radius:1px;background:rgb(7,37,80)"></div>
+                              <div style="width:3px;height:3px;border-radius:1px;background:rgb(7,37,80)"></div>
+                              <div style="width:3px;height:3px;border-radius:1px;background:rgb(7,37,80)"></div>
+                              <div style="width:3px;height:3px;border-radius:1px;background:rgb(7,37,80)"></div>
+                              <div style="width:3px;height:3px;border-radius:1px;background:rgb(7,37,80)"></div>
+                              <div style="width:3px;height:3px;border-radius:1px;background:rgb(7,37,80)"></div>
+                              <div style="width:3px;height:3px;border-radius:1px;background:rgb(7,37,80)"></div>
+                              <div style="width:3px;height:3px;border-radius:1px;background:rgb(7,37,80)"></div>
+                              <div style="width:3px;height:3px;border-radius:1px;background:rgb(7,37,80)"></div>
+                            </div>
+                            <div style="width:74px;height:7px;border-radius:4px;background:rgba(7,37,80,.28)"></div>
+                          </div>
+                          <svg width="13" height="8" viewBox="0 0 13 8" fill="none">
+                            <path d="M1.5 1.5L6.5 6.5L11.5 1.5" stroke="rgb(7,37,80)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                          </svg>
+                        </div>
+                      </sc-if>
+
+                      <sc-if value="{{ o.isVisible }}">
+                        <div style="align-self:stretch;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;flex-shrink:0">
+                          <div style="height:40px;border-radius:9px;background:rgb(255,255,255);box-shadow:inset 0 0 0 1.26px rgb(231,236,245);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px">
+                            <div style="width:20px;height:13px;border-radius:3px;background:rgba(7,37,80,.5)"></div>
+                            <div style="width:26px;height:4px;border-radius:2px;background:rgba(7,37,80,.16)"></div>
+                          </div>
+                          <div style="height:40px;border-radius:9px;background:rgb(255,255,255);box-shadow:inset 0 0 0 1.26px rgb(231,236,245);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px">
+                            <div style="width:20px;height:13px;border-radius:3px;background:rgba(7,37,80,.5)"></div>
+                            <div style="width:26px;height:4px;border-radius:2px;background:rgba(7,37,80,.16)"></div>
+                          </div>
+                          <div style="height:40px;border-radius:9px;background:rgb(255,255,255);box-shadow:inset 0 0 0 1.26px rgb(231,236,245);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px">
+                            <div style="width:20px;height:13px;border-radius:3px;background:rgba(7,37,80,.5)"></div>
+                            <div style="width:26px;height:4px;border-radius:2px;background:rgba(7,37,80,.16)"></div>
+                          </div>
+                          <div style="height:40px;border-radius:9px;background:rgb(255,255,255);box-shadow:inset 0 0 0 1.26px rgb(231,236,245);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px">
+                            <div style="width:20px;height:13px;border-radius:3px;background:rgba(7,37,80,.5)"></div>
+                            <div style="width:26px;height:4px;border-radius:2px;background:rgba(7,37,80,.16)"></div>
+                          </div>
+                          <div style="height:40px;border-radius:9px;background:rgb(255,255,255);box-shadow:inset 0 0 0 1.26px rgb(231,236,245);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px">
+                            <div style="width:20px;height:13px;border-radius:3px;background:rgba(7,37,80,.5)"></div>
+                            <div style="width:26px;height:4px;border-radius:2px;background:rgba(7,37,80,.16)"></div>
+                          </div>
+                          <div style="height:40px;border-radius:9px;background:rgb(255,255,255);box-shadow:inset 0 0 0 1.26px rgb(231,236,245);display:flex;align-items:center;justify-content:center;gap:4px">
+                            <div style="width:5px;height:5px;border-radius:50%;background:rgb(7,37,80)"></div>
+                            <div style="width:5px;height:5px;border-radius:50%;background:rgb(7,37,80)"></div>
+                            <div style="width:5px;height:5px;border-radius:50%;background:rgb(7,37,80)"></div>
+                          </div>
+                        </div>
+                      </sc-if>
+
+                      <div style="align-self:stretch;height:1px;background:rgba(7,37,80,.14);flex-shrink:0"></div>
+                      <div style="width:80px;height:6px;border-radius:3px;background:rgba(235,0,27,.45);flex-shrink:0"></div>
+                    </div>
+
+                    <div style="display:flex;flex-direction:row;align-items:flex-start;gap:12px">
+                      <div style="width:28px;height:28px;border-radius:50%;box-shadow:inset 0 0 0 2.4px {{ o.dotRing }};display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px">
+                        <div style="width:14px;height:14px;border-radius:50%;background:{{ o.dotFill }}"></div>
+                      </div>
+                      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px">
+                        <span style="font-weight:600;font-size:24px;line-height:1.3">{{ o.label }}</span>
+                        <span style="font-weight:500;font-size:18px;line-height:1.4;color:rgb(98,118,155);text-wrap:pretty">{{ o.sub }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+
             <sc-if value="{{ b.isOptions }}">
               <div style="display:flex;flex-direction:row;flex-wrap:wrap;gap:12px">
                 <sc-for list="{{ b.items }}" as="o" hint-placeholder-count="3">
@@ -1012,7 +1097,7 @@ a{color:rgb(7,37,80)}a:hover{color:rgb(98,118,155)}
                             <path d="M2 3L11 13L20 3" stroke="{{ pm.downInk }}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
                           </svg>
                         </div>
-                        <div onClick="{{ pm.onToggle }}" style="width:80px;height:46px;border-radius:999px;background:{{ pm.trackBg }};display:flex;flex-direction:row;align-items:center;justify-content:{{ pm.knobAlign }};padding:5px;box-sizing:border-box;cursor:pointer;transition:background .18s ease">
+                        <div onClick="{{ pm.onToggle }}" style="width:80px;height:46px;border-radius:999px;background:{{ pm.trackBg }};display:flex;flex-direction:row;align-items:center;justify-content:{{ pm.knobAlign }};padding:5px;box-sizing:border-box;cursor:{{ pm.switchCursor }};opacity:{{ pm.switchOpacity }};transition:background .18s ease">
                           <div style="width:36px;height:36px;border-radius:50%;background:rgb(255,255,255);box-shadow:0px 2px 6px 0px rgba(11,48,100,.2)"></div>
                         </div>
                       </div>
@@ -1028,7 +1113,6 @@ a{color:rgb(7,37,80)}a:hover{color:rgb(98,118,155)}
 
             <sc-if value="{{ b.isCamps }}">
               <div style="display:flex;flex-direction:column;gap:14px">
-                <span style="font-weight:500;font-size:19px;line-height:1.35;color:rgb(98,118,155);padding:0 4px;text-wrap:pretty">{{ b.lead }}</span>
                 <sc-for list="{{ b.items }}" as="cp" hint-placeholder-count="3">
                   <div style="border-radius:20.1619px;background:rgb(255,255,255);box-shadow:inset 0 0 0 1.26px rgb(231,236,245),0px 4px 4px 0px rgba(11,48,100,0.05);padding:20px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
                     <div style="display:flex;flex-direction:row;align-items:center;gap:18px">
@@ -1045,10 +1129,6 @@ a{color:rgb(7,37,80)}a:hover{color:rgb(98,118,155)}
                               <span style="font-weight:700;font-size:16px;color:{{ cp.chipInk }};white-space:nowrap">{{ cp.chip }}</span>
                             </div>
                           </sc-if>
-                          <div style="display:flex;flex-direction:row;align-items:center;gap:9px;min-width:0">
-                            <div style="width:9px;height:9px;border-radius:50%;background:{{ cp.dotBg }};flex-shrink:0"></div>
-                            <span style="font-weight:500;font-size:19px;line-height:1.3;color:{{ cp.stateInk }}">{{ cp.state }}</span>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -1068,7 +1148,7 @@ a{color:rgb(7,37,80)}a:hover{color:rgb(98,118,155)}
                           <path d="M2 3L11 13L20 3" stroke="{{ cp.downInk }}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                       </div>
-                      <div onClick="{{ cp.onToggle }}" style="width:80px;height:46px;border-radius:999px;background:{{ cp.trackBg }};display:flex;flex-direction:row;align-items:center;justify-content:{{ cp.knobAlign }};padding:5px;box-sizing:border-box;cursor:pointer;flex-shrink:0;transition:background .18s ease">
+                      <div onClick="{{ cp.onToggle }}" style="width:80px;height:46px;border-radius:999px;background:{{ cp.trackBg }};display:flex;flex-direction:row;align-items:center;justify-content:{{ cp.knobAlign }};padding:5px;box-sizing:border-box;cursor:{{ cp.switchCursor }};opacity:{{ cp.switchOpacity }};flex-shrink:0;transition:background .18s ease">
                         <div style="width:36px;height:36px;border-radius:50%;background:rgb(255,255,255);box-shadow:0px 2px 6px 0px rgba(11,48,100,.2)"></div>
                       </div>
                     </div>
@@ -1619,7 +1699,7 @@ a{color:rgb(7,37,80)}a:hover{color:rgb(98,118,155)}
 
   <sc-if value="{{ onPayment }}">
     <div style="position:absolute;inset:0;background:rgb(243,246,254);animation:fadeIn .2s ease both">
-      <dc-import name="POS Payment Screen v2" amount="{{ payDisplay }}" language="{{ language }}" mode="{{ payKind }}" methods="{{ payMethodsCsv }}" methods-open="{{ payMethodsOpen }}" outcome="{{ outcome }}" on-done="{{ onPaymentDone }}" hint-size="720px,1600px" style="position:absolute;left:0;top:0;width:720px;height:1600px"></dc-import>
+      <dc-import name="POS Payment Screen v2" amount="{{ payDisplay }}" language="{{ language }}" mode="{{ payKind }}" methods="{{ payMethodsCsv }}" methods-layout="{{ payMethodsLayout }}" outcome="{{ outcome }}" on-done="{{ onPaymentDone }}" hint-size="720px,1600px" style="position:absolute;left:0;top:0;width:720px;height:1600px"></dc-import>
       <sc-if value="{{ payContext }}">
         <div style="position:absolute;right:24px;top:24px;height:64px;border-radius:16px;background:rgb(7,37,80);display:flex;align-items:center;padding:0 24px;z-index:5">
           <span style="font-weight:600;font-size:22px;color:rgb(255,255,255)">{{ payContextLabel }}</span>
@@ -1858,9 +1938,15 @@ const COPY = {
     featuredChip: "Destacado", altOffState: "Oculto ahora mismo",
     featuredLeadOff: "Los m\u00e9todos alternativos est\u00e1n apagados: el orden queda guardado para cuando los vuelvas a mostrar.",
     featuredLead: "Los {n} primeros se ven directos en la pantalla del cliente; el resto queda dentro de \u00abOtros m\u00e9todos de pago\u00bb.",
+    featuredLeadCollapsed: "Todos quedan dentro de \u00abOtros m\u00e9todos de pago\u00bb: este orden manda dentro de la barra desplegada.",
+    featuredLeadAll: "Todos los m\u00e9todos activos se ven directos en la pantalla del cliente, en este orden.",
     contractBtn: "Contratar",
-    startOpen: "Mostrar los m\u00e9todos abiertos",
-    startOpenSub: "Si est\u00e1 apagado, el cliente ve la barra plegada",
+    layoutTitle: "C\u00f3mo mostrarlos",
+    layoutCollapsed: "Colapsados",
+    layoutCollapsedSub: "Dentro de \u00abOtros m\u00e9todos\u00bb: el cliente toca la barra y se despliegan.",
+    layoutVisible: "Visibles",
+    layoutVisibleSub: "Directos en la pantalla de pago, sin tener que abrir nada.",
+    layoutPreviewLabel: "As\u00ed lo ve el cliente",
     orderTitle: "Orden y visibilidad",
     posLabel: "Posici\u00f3n {n}",
     hidden: "Oculto al cliente",
@@ -1895,7 +1981,6 @@ const COPY = {
     contractedSub: "{n} queda a\u00f1adido al final de la lista, listo para ordenar.",
     payCats: { mobile: "Pagos m\u00f3viles", wallet: "Wallets", bank: "Banca online y transferencia", finance: "Financiaci\u00f3n", voucher: "Cup\u00f3n prepagado" },
     cardBrandsNote: "Visa, Mastercard, Amex, Diners, JCB, Union Pay y Apple Pay entran por el lector: se muestran como marcas aceptadas, no como botones.",
-    walletNote: "El orden manda: el primer m\u00e9todo es el m\u00e1s visible y el m\u00e1s usado. Deja fuera lo que no se use para no ralentizar la caja.",
     logoSection: "Logotipo del ticket", logoTitle: "Logotipo del comercio",
     logoHelp: "PNG o JPG con fondo blanco, m\u00e1ximo 512 px de ancho. Se imprime en monocromo.",
     logoEmpty: "Sin logotipo cargado", logoUpload: "Subir logotipo", logoReplace: "Cambiar logotipo", logoRemove: "Quitar",
@@ -2040,10 +2125,7 @@ const COPY = {
     campNewsUpd: "{n} campa\u00f1a actualizada por PAY", campNewsUpdP: "{n} campa\u00f1as actualizadas por PAY",
     campNewsJoin: " \u00b7 ", campNewsTail: ". Una campa\u00f1a nueva no se muestra en el cobro hasta que t\u00fa la actives.",
     campShowLabel: "Mostrar campa\u00f1as en el cobro", campShowSub: "El cliente las ver\u00e1 entre el importe y el pago",
-    campShowOffNote: "Con esto apagado no se muestra ninguna campa\u00f1a durante el cobro, aunque est\u00e9n activas.",
     campListTitle: "Disponibles",
-    campLead: "T\u00fa decides cu\u00e1les se muestran durante el cobro y en qu\u00e9 orden. El contenido lo define PAY.",
-    campStAvail: "Disponible \u00b7 no se muestra en el cobro",
     campChipNew: "Nueva", campChipUpd: "Actualizada",
     campOnWord: "Activa", campOffWord: "Disponible",
     campSee: "Ver ficha",
@@ -2072,7 +2154,8 @@ const COPY = {
     tipDoneToast: "Cobro con propina de {a}",
     groups: [
       ["Operaciones", [
-        ["history", "Historial de operaciones", "Devolver, anular, reimprimir y buscar"]
+        ["history", "Historial de operaciones", "Devolver, anular, reimprimir y buscar"],
+        ["link", "Enlaces de pago", "Cobros a distancia y su estado"]
       ]],
       ["Caja y ventas", [
         ["close", "Cierre de caja", "Totales del turno y env\u00edo autom\u00e1tico"],
@@ -2081,8 +2164,7 @@ const COPY = {
       ["Cobros", [
         ["wallet", "M\u00e9todos de pago", "Qu\u00e9 ve el cliente y en qu\u00e9 orden"],
         ["heart", "Campa\u00f1as", "Cu\u00e1les se muestran en el cobro"],
-        ["percent", "Propinas e impuestos", "Porcentajes sugeridos e IVA"],
-        ["link", "Enlaces de pago", "Cobros a distancia y su estado"]
+        ["percent", "Propinas e impuestos", "Porcentajes sugeridos e IVA"]
       ]],
       ["Comercio y equipo", [
         ["shop", "Datos del comercio", "Raz\u00f3n social, ticket y logotipo"],
@@ -2267,9 +2349,15 @@ const COPY = {
     featuredChip: "Featured", altOffState: "Hidden right now",
     featuredLeadOff: "Alternative methods are off: this order stays saved for when you show them again.",
     featuredLead: "The first {n} show directly on the customer screen; the rest sit inside \u201cOther payment methods\u201d.",
+    featuredLeadCollapsed: "They all sit inside \u201cOther payment methods\u201d: this order rules inside the expanded bar.",
+    featuredLeadAll: "Every active method shows directly on the customer screen, in this order.",
     contractBtn: "Get it",
-    startOpen: "Show methods expanded",
-    startOpenSub: "When off, the customer sees the collapsed bar",
+    layoutTitle: "How to show them",
+    layoutCollapsed: "Collapsed",
+    layoutCollapsedSub: "Inside \u201cOther methods\u201d: the customer taps the bar to open them.",
+    layoutVisible: "Visible",
+    layoutVisibleSub: "Straight on the payment screen, with nothing to open.",
+    layoutPreviewLabel: "This is what the customer sees",
     orderTitle: "Order and visibility",
     posLabel: "Position {n}",
     hidden: "Hidden from the customer",
@@ -2304,7 +2392,6 @@ const COPY = {
     contractedSub: "{n} is added at the end of the list, ready to reorder.",
     payCats: { mobile: "Mobile payments", wallet: "Wallets", bank: "Online banking and transfer", finance: "Financing", voucher: "Prepaid voucher" },
     cardBrandsNote: "Visa, Mastercard, Amex, Diners, JCB, Union Pay and Apple Pay come through the reader: they show as accepted brands, not as buttons.",
-    walletNote: "Order matters: the first method is the most visible and most used. Leave out whatever is not used so the till stays fast.",
     logoSection: "Receipt logo", logoTitle: "Business logo",
     logoHelp: "PNG or JPG on white, 512 px wide max. It prints in monochrome.",
     logoEmpty: "No logo uploaded", logoUpload: "Upload logo", logoReplace: "Replace logo", logoRemove: "Remove",
@@ -2446,10 +2533,7 @@ const COPY = {
     campNewsUpd: "{n} campaign updated by PAY", campNewsUpdP: "{n} campaigns updated by PAY",
     campNewsJoin: " \u00b7 ", campNewsTail: ". A new campaign is not shown at checkout until you activate it.",
     campShowLabel: "Show campaigns at checkout", campShowSub: "The customer will see them between the amount and payment",
-    campShowOffNote: "With this off, no campaign is shown at checkout, even if marked active.",
     campListTitle: "Available",
-    campLead: "You decide which ones appear at checkout and in which order. PAY defines the content.",
-    campStAvail: "Available \u00b7 not shown at checkout",
     campChipNew: "New", campChipUpd: "Updated",
     campOnWord: "Active", campOffWord: "Available",
     campSee: "View details",
@@ -2478,7 +2562,8 @@ const COPY = {
     tipDoneToast: "Charged with a {a} tip",
     groups: [
       ["Transactions", [
-        ["history", "Transaction history", "Refund, void, reprint and search"]
+        ["history", "Transaction history", "Refund, void, reprint and search"],
+        ["link", "Payment links", "Remote charges and their status"]
       ]],
       ["Till & sales", [
         ["close", "End of day", "Shift totals and auto settlement"],
@@ -2487,8 +2572,7 @@ const COPY = {
       ["Payments", [
         ["wallet", "Payment methods", "What the customer sees and in which order"],
         ["heart", "Campaigns", "Which ones appear at checkout"],
-        ["percent", "Tips and taxes", "Suggested rates and VAT"],
-        ["link", "Payment links", "Remote charges and their status"]
+        ["percent", "Tips and taxes", "Suggested rates and VAT"]
       ]],
       ["Business & team", [
         ["shop", "Business details", "Legal name, receipt and logo"],
@@ -2680,7 +2764,7 @@ class Component extends DCLogic {
     pin: null, pinValue: "", pinError: false, logoUrl: "", histQuery: "",
     closePin: "", closePinError: false,
     payOrder: ["bizum", "mbway", "alipay", "wero", "transfer", "wechat"],
-    payOff: [], payContracted: ["bizum", "mbway", "alipay", "wero", "transfer", "wechat"], payOpen: false, payAltShow: true,
+    payOff: [], payContracted: ["bizum", "mbway", "alipay", "wero", "transfer", "wechat"], payLayout: "collapsed", payAltShow: true,
     shop: { name: "Nou Barris Caf\u00e9 SL", cif: "B67042219", address: "C/ Via J\u00falia 118, Barcelona", cp: "08016" },
     flow: null, flowStage: null, txQuery: "", refundTx: null, refundMode: "total",
     refundCents: 0, refundError: false, refunded: REFUNDED, payMode: "charge",
@@ -3407,7 +3491,6 @@ class Component extends DCLogic {
         { id: "campShowFlag", label: t.campShowLabel, sub: t.campShowSub, on: st.campShow,
           onToggle: () => this.setState((s2) => ({ campShow: !s2.campShow })) }
       ] });
-      if (!st.campShow) blocks.push({ type: "note", text: t.campShowOffNote });
       const campRow = (id) => {
         const c = CAMP_BY[id];
         const on = st.campOn.indexOf(id) >= 0;
@@ -3415,17 +3498,17 @@ class Component extends DCLogic {
         return {
           name: t.camps[id].name, org: t.camps[id].org, img: c.img, on: on,
           rank: on ? String(pos + 1) : "–",
-          state: on ? t.campOnWord : t.campStAvail,
           chip: c.isNew ? t.campChipNew : (c.updated ? t.campChipUpd : ""),
           chipTone: c.isNew ? "new" : "upd",
           first: live.indexOf(id) === 0, last: live.indexOf(id) === live.length - 1,
           seeLabel: t.campSee,
+          disabled: !st.campShow,
           onUp: this.moveCamp(id, -1, live), onDown: this.moveCamp(id, 1, live),
           onToggle: this.toggleCamp(id, t),
           onOpen: () => this.setState({ detail: "campaign-" + id })
         };
       };
-      if (live.length) blocks.push({ type: "camps", title: t.campListTitle, lead: t.campLead, items: live.map(campRow) });
+      if (live.length) blocks.push({ type: "camps", title: t.campListTitle, items: live.map(campRow) });
       const ended = CAMPAIGNS.filter((c) => c.ended);
       if (ended.length) blocks.push({ type: "list", title: t.campEndedTitle, items: ended.map((c) => ({
         title: t.camps[c.id].name, sub: t.campEndedSub.replace("{d}", c.until),
@@ -3465,13 +3548,17 @@ class Component extends DCLogic {
           if (st.payContracted.indexOf(id) < 0 && PAY_CATALOG[id].cat === cat && PAY_CATALOG[id].label) notContracted.push(id);
         });
       });
+      const inlineLayout = st.payLayout === "visible";
       const featuredN = visible.length <= 6 ? 6 : 5;
       const toggles = [
         { id: "payAltShowFlag", label: t.showAlt, sub: t.showAltSub, on: st.payAltShow, onToggle: () => this.setState((s2) => ({ payAltShow: !s2.payAltShow })) }
       ];
-      if (st.payAltShow) toggles.push({ id: "payOpenFlag", label: t.startOpen, sub: t.startOpenSub, on: st.payOpen, onToggle: () => this.setState((s2) => ({ payOpen: !s2.payOpen })) });
       const blocks = [{ type: "toggles", title: t.startState, items: toggles }];
       if (!st.payAltShow) blocks.push({ type: "note", text: t.altHiddenNote });
+      if (st.payAltShow) blocks.push({ type: "layoutPick", title: t.layoutTitle, items: [
+        { value: "collapsed", label: t.layoutCollapsed, sub: t.layoutCollapsedSub, on: !inlineLayout },
+        { value: "visible", label: t.layoutVisible, sub: t.layoutVisibleSub, on: inlineLayout }
+      ], onPick: (v) => () => this.setState({ payLayout: v }) });
 
       const items = order.map((id) => {
         const on = st.payOff.indexOf(id) < 0;
@@ -3483,9 +3570,10 @@ class Component extends DCLogic {
           label: label,
           icon: ent.icon, on: on,
           rank: on ? String(pos + 1) : "\u2013",
-          featured: featured && st.payAltShow, featuredLabel: t.featuredChip,
+          featured: featured && st.payAltShow && inlineLayout && visible.length > 6, featuredLabel: t.featuredChip,
           stateLabel: !st.payAltShow ? t.altOffState : (!on ? t.hidden : ""),
           first: order.indexOf(id) === 0, last: order.indexOf(id) === order.length - 1,
+          disabled: !st.payAltShow,
           onUp: this.moveMethod(id, -1), onDown: this.moveMethod(id, 1), onToggle: this.toggleMethod(id, t, label)
         };
       });
@@ -3500,10 +3588,9 @@ class Component extends DCLogic {
       });
       blocks.push({ type: "reorder", title: t.orderTitle,
         leadChip: st.payAltShow ? "" : "",
-        leadText: st.payAltShow ? t.featuredLead.replace("{n}", String(featuredN)) : t.featuredLeadOff,
+        leadText: !st.payAltShow ? t.featuredLeadOff : (!inlineLayout ? t.featuredLeadCollapsed : (visible.length > 6 ? t.featuredLead.replace("{n}", String(featuredN)) : t.featuredLeadAll)),
         items: items });
       blocks.push({ type: "note", text: t.cardBrandsNote });
-      blocks.push({ type: "note", text: t.walletNote });
       return { title: t.walletTitle, subtitle: t.walletSub, blocks: blocks };
     }
 
@@ -3943,6 +4030,7 @@ class Component extends DCLogic {
         isReorder: b.type === "reorder", isPromo: b.type === "promo",
         isChips: b.type === "chips", isTxList: b.type === "txList",
         isCamps: b.type === "camps", isCampImage: b.type === "campImage",
+        isLayoutPick: b.type === "layoutPick",
         isFilterRow: b.type === "filterRow", hasClear: !!b.onClear, onClear: b.onClear,
         text: b.text || "", items: []
       };
@@ -3992,13 +4080,15 @@ class Component extends DCLogic {
         isContract: !!pm.isContract, canOrder: !pm.isContract,
         contractLabel: pm.contractLabel || "", onContract: pm.onContract,
         stateLabel: pm.stateLabel, stateInk: pm.on ? "rgb(0,105,63)" : "rgb(98,118,155)",
-        trackBg: pm.on ? "rgb(7,37,80)" : "rgb(215,223,238)",
+        trackBg: pm.disabled ? "rgb(237,242,252)" : (pm.on ? "rgb(0,138,82)" : "rgb(215,223,238)"),
+        switchOpacity: pm.disabled ? ".5" : "1",
+        switchCursor: pm.disabled ? "default" : "pointer",
         knobAlign: pm.on ? "flex-end" : "flex-start",
         upBg: pm.first ? "rgb(243,246,254)" : "rgb(226,238,254)",
         upInk: pm.first ? "rgb(190,201,220)" : "rgb(7,37,80)",
         downBg: pm.last ? "rgb(243,246,254)" : "rgb(226,238,254)",
         downInk: pm.last ? "rgb(190,201,220)" : "rgb(7,37,80)",
-        onUp: pm.onUp, onDown: pm.onDown, onToggle: pm.onToggle
+        onUp: pm.onUp, onDown: pm.onDown, onToggle: pm.disabled ? (() => {}) : pm.onToggle
       }));
       if (b.type === "shiftId") out.items = b.items.map((it) => ({
         label: it.label, value: it.value,
@@ -4077,12 +4167,9 @@ class Component extends DCLogic {
       });
       if (b.type === "campImage") { out.src = b.src; out.alt = b.alt || ""; }
       if (b.type === "camps") {
-        out.lead = b.lead || "";
         out.items = b.items.map((c) => ({
-          name: c.name, org: c.org, src: c.img, state: c.state, seeLabel: c.seeLabel,
+          name: c.name, org: c.org, src: c.img, seeLabel: c.seeLabel,
           rank: c.rank, rankBg: c.on ? "rgb(7,37,80)" : "rgb(243,246,254)", rankInk: c.on ? "rgb(255,255,255)" : "rgb(122,140,175)",
-          stateInk: c.on ? "rgb(0,105,63)" : "rgb(98,118,155)",
-          dotBg: c.on ? "rgb(0,138,82)" : "rgb(190,201,220)",
           hasChip: !!c.chip, chip: c.chip || "",
           chipBg: c.chipTone === "new" ? "rgb(224,246,235)" : "rgb(255,244,214)",
           chipInk: c.chipTone === "new" ? "rgb(11,79,53)" : "rgb(92,58,0)",
@@ -4090,9 +4177,11 @@ class Component extends DCLogic {
           upInk: c.first ? "rgb(190,201,220)" : "rgb(7,37,80)",
           downBg: c.last ? "rgb(243,246,254)" : "rgb(226,238,254)",
           downInk: c.last ? "rgb(190,201,220)" : "rgb(7,37,80)",
-          trackBg: c.on ? "rgb(7,37,80)" : "rgb(215,223,238)",
+          trackBg: c.disabled ? "rgb(237,242,252)" : (c.on ? "rgb(0,138,82)" : "rgb(215,223,238)"),
+          switchOpacity: c.disabled ? ".5" : "1",
+          switchCursor: c.disabled ? "default" : "pointer",
           knobAlign: c.on ? "flex-end" : "flex-start",
-          onUp: c.onUp, onDown: c.onDown, onToggle: c.onToggle, onOpen: c.onOpen
+          onUp: c.onUp, onDown: c.onDown, onToggle: c.disabled ? (() => {}) : c.onToggle, onOpen: c.onOpen
         }));
       }
       if (b.type === "metrics") out.items = b.items;
@@ -4110,17 +4199,27 @@ class Component extends DCLogic {
         const on = tg.on !== undefined ? !!tg.on : !!st.flags[tg.id];
         if (tg.onToggle) return {
           label: tg.label, sub: tg.sub || "",
-          trackBg: on ? "rgb(7,37,80)" : "rgb(215,223,238)",
+          trackBg: on ? "rgb(0,138,82)" : "rgb(215,223,238)",
           knobAlign: on ? "flex-end" : "flex-start",
           onToggle: tg.onToggle
         };
         return {
           label: tg.label, sub: tg.sub || "",
-          trackBg: on ? "rgb(7,37,80)" : "rgb(215,223,238)",
+          trackBg: on ? "rgb(0,138,82)" : "rgb(215,223,238)",
           knobAlign: on ? "flex-end" : "flex-start",
           onToggle: this.toggle(tg.id)
         };
       });
+      if (b.type === "layoutPick") out.items = b.items.map((o) => ({
+        label: o.label, sub: o.sub || "",
+        isCollapsed: o.value === "collapsed",
+        isVisible: o.value === "visible",
+        border: o.on ? "rgb(7,37,80)" : "rgb(231,236,245)",
+        ring: o.on ? "2.4px" : "1.26px",
+        dotRing: o.on ? "rgb(7,37,80)" : "rgb(190,201,220)",
+        dotFill: o.on ? "rgb(7,37,80)" : "rgba(0,0,0,0)",
+        onPick: b.onPick(o.value)
+      }));
       if (b.type === "options") out.items = b.items.map((o) => {
         const sel = st.choices[b.id] === o.value;
         return {
@@ -4429,7 +4528,7 @@ class Component extends DCLogic {
       payDisplay: this.fmt(st.payCents),
       payKind: st.payMode === "refund" ? "refund" : "charge",
       payMethodsCsv: st.payAltShow ? st.payOrder.filter((id) => st.payContracted.indexOf(id) >= 0 && st.payOff.indexOf(id) < 0).join(",") : "none",
-      payMethodsOpen: st.payOpen,
+      payMethodsLayout: st.payLayout,
       payContext: !!st.payPart || st.campDonation > 0 || st.tipAdded > 0,
       payContextLabel: st.payPart
         ? t.payingPart.replace("{a}", st.payPart.index + 1).replace("{b}", st.payPart.total)
