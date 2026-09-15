@@ -27,6 +27,23 @@
     window.visualViewport.addEventListener("resize", fitCanvas);
     window.visualViewport.addEventListener("scroll", fitCanvas);
   }
+  // Recupera la barra de direcciones del navegador al primer toque, donde el
+  // navegador lo permita. No hay forma web de ocultar la barra de sistema de
+  // Android; esto solo libera lo que el propio navegador controla.
+  function requestFs() {
+    document.removeEventListener("pointerdown", requestFs);
+    var el = document.documentElement;
+    var req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+    if (!req) return;
+    try {
+      var p = req.call(el);
+      if (p && typeof p.catch === "function") p.catch(function () {});
+    } catch (e) {}
+  }
+  if (!document.fullscreenElement) {
+    document.addEventListener("pointerdown", requestFs, { once: true });
+  }
+  document.addEventListener("fullscreenchange", fitCanvas);
 })();
 </script>
 <script src="./support.js"></script>
@@ -2668,7 +2685,7 @@ class Component extends DCLogic {
     flow: null, flowStage: null, txQuery: "", refundTx: null, refundMode: "total",
     refundCents: 0, refundError: false, refunded: REFUNDED, payMode: "charge",
     reprintState: "form", reprintLabel: "",
-    campOrder: ["aula", "infancia", "investigacion"], campOn: ["aula", "investigacion", "alimentos"],
+    campOrder: ["aula", "infancia", "investigacion"], campOn: ["aula", "alimentos"],
     // "alimentos" sigue en campOn: el comercio la activó en su día y PAY la retiró al caducar.
     // liveCamps() la filtra, así que no llega al cobro sin que nadie la desactive a mano.
     campShow: false,
